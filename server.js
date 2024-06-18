@@ -1,19 +1,22 @@
+// Import the required files and packages
 const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const api = require('./routes/index.js');
 
+// Initialize the app to use json,urlencoded, public and /api as a route
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/api', api);
 
-
+// Returns index.html as the main page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+// Returns notes.html as the notes page
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
