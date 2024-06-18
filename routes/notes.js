@@ -42,22 +42,31 @@ notes.post('/', (req, res) => {
         readFromFile('./db/db.json').then((data) =>{
 
             data =JSON.parse(data);
-
+            if(data){
             // Loop through db.json to see if such note id exists
-            for(let i = 0; i < data.length; i++){
-                console.info(data[i])
-                if(data[i].id === id){
-                    data.splice(i, 1);
-                    writeToFile('./db/db.json', data);
-                    const response = {
-                        status: 'success',
-                        body: data,
-                      };
-                    res.json(response);     
-                }
-    
-            }
-
+                for(let i = 0; i < data.length; i++){
+                    console.info(`Deleted note ${data[i]}`);
+                    if(data[i].id === id){
+                        // Splice to remove if it exists
+                        data.splice(i, 1);
+                        writeToFile('./db/db.json', data);
+                        const response = {
+                            status: 'success',
+                            body: data,
+                        };
+                        res.json(response);   
+                        break;  
+                    }
+                    else{
+                    if(i === data.length - 1){
+                        res.json('Note ID not found! No actions was taken.');
+                    }
+        
+                }}
+        }else
+        {
+            res.json('There are currently no existing notes!');
+        }
 
         } );
 

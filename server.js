@@ -11,16 +11,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/api', api);
 
-// Returns index.html as the main page
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
-});
+
+
 
 // Returns notes.html as the notes page
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+// Returns index.html as the main page for any wildcard routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 app.listen(PORT, () =>{
     console.log(`App listening at http://localhost:${PORT}`);
