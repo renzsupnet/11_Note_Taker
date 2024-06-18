@@ -45,9 +45,9 @@ notes.post('/', (req, res) => {
             if(data){
             // Loop through db.json to see if such note id exists
                 for(let i = 0; i < data.length; i++){
-                    console.info(`Deleted note ${data[i]}`);
+                    console.info(`Deleted note ${JSON.stringify(data[i])}`);
                     if(data[i].id === id){
-                        // Splice to remove if it exists
+                        // Splice to remove if it exists then rewrite db.json to reflect change
                         data.splice(i, 1);
                         writeToFile('./db/db.json', data);
                         const response = {
@@ -58,8 +58,8 @@ notes.post('/', (req, res) => {
                         break;  
                     }
                     else{
-                    if(i === data.length - 1){
-                        res.json('Note ID not found! No actions was taken.');
+                        if(i === data.length - 1){
+                            res.json('Note ID not found! No actions was taken.');
                     }
         
                 }}
