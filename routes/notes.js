@@ -16,7 +16,7 @@ notes.post('/', (req, res) => {
         const newNotes = {
             title,
             text,
-            note_id: uuid()
+            id: uuid()
         };
 
         readAndAppend(newNotes, './db/db.json');
@@ -40,8 +40,8 @@ notes.post('/', (req, res) => {
 
             data =JSON.parse(data);
             for(let i = 0; i < data.length; i++){
-
-                if(data[i].note_id === id){
+                console.info(data[i])
+                if(data[i].id === id){
                     data.splice(i, 1);
                     writeToFile('./db/db.json', data);
                     const response = {
@@ -52,11 +52,11 @@ notes.post('/', (req, res) => {
                 }
     
             }
-    
-            res.json('Note_id to be deleted not found!');
+
 
         } );
 
    });
 
-   module.exports = notes;
+
+module.exports = notes;
