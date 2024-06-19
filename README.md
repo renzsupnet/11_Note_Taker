@@ -38,7 +38,7 @@
 
   ![Note Page](./public/assets/img/note.png)
 
-    A screenshot of samples notes saved. The trash icon when pressed, will delete the corresponding note.
+    A screenshot of sample notes saved. The trash icon when pressed, will delete the corresponding note.
 
   ![Sample Notes](./public/assets/img/sample.png)
 
